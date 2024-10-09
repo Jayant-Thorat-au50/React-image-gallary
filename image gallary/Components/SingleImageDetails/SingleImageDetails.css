@@ -1,7 +1,11 @@
 .single-images{
-    height: 300px;
-    width: 400px;
+    height: 250px;
+    width: 340px;
 }
 .single-bg{
     background-color: #9a5cf2;
+}
+
+p,h2{
+    text-align: start;
 }
