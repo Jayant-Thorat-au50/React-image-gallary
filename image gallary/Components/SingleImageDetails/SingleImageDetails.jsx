@@ -1,36 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "./SingleImageDetails.css";
+import GetImageById from "../../Hooks/GetImageById";
 
 function SingleImageDetails() {
-  const { id } = useParams();
-  const [imageState, setImageState] = useState({
-    image: "",
-    id: "",
-    description: "",
-    title: "",
-  });
-
-  const dowloadImgById = async () => {
-    const response = await axios.get(
-      `https://api.slingacademy.com/v1/sample-data/photos/${id}`
-    );
-
-    const Details = response.data.photo;
-
-    return setImageState({
-      ...imageState,
-      image: Details.url,
-      id: Details.id,
-      description: Details.description,
-      title: Details.title,
-    });
-  };
-
-  useEffect(() => {
-    dowloadImgById();
-  });
+  const { imageState } = GetImageById();
 
   return (
     <div className="col-10 m-auto my-5 text-white single-bg py-5 d-flex justify-content-center align-items-center">

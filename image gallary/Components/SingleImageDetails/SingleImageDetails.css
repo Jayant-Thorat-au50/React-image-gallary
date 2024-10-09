@@ -1,9 +1,10 @@
 .single-images{
     height: 250px;
     width: 340px;
+    border-radius: 9px;
 }
 .single-bg{
-    background-color: #9a5cf2;
+    background-color: #062e6f;
 }
 
 p,h2{
