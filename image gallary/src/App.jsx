@@ -1,54 +1,23 @@
-
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import './App.css'
-import SingleImage from '../Components/singleImageDetails/SingleImage'
+import "./App.css";
+import ImagesList from "../Components/ImagesList/ImagesList";
+import { Routes, Route } from "react-router-dom";
+import SingleImageDetails from "../Components/SingleImageDetails/SingleImageDetails";
 
 function App() {
-
-const [imageListState,setImageListState] = useState({
-      imageListUrl:'https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=20',
-      images:[]
-
-})
-
-async function ImgaeDownload(){
-    const response = await axios.get(imageListState.imageListUrl)
-    
-    const photoList = response.data.photos 
-    console.log(photoList);
-    
-   const list =  photoList.map(i => i.url)
-
-   const pictures = await axios.all(list)
-  setImageListState({...imageListState,images:pictures})
-   
-
-    
-    
-    
+  return (
+    <>
+      <section className="container-fluid">
+        <section className="row ">
+          <section className="col-12 d-flex justify-content-center align-items-center">
+            <Routes>
+              <Route path="/" element={<ImagesList />}></Route>
+              <Route path="/image/:id" element={<SingleImageDetails />}></Route>
+            </Routes>
+          </section>
+        </section>
+      </section>
+    </>
+  );
 }
 
-useEffect(()=>{
-  ImgaeDownload()
-})
-
-
-return(
-<>
-
-
-{
-  imageListState.images.map((url)=> 
-    <SingleImage
-    url={url}
-    />
-  )
-}
-
-
-</>
-)
-}
-
-export default App
+export default App;
